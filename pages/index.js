@@ -7,6 +7,7 @@ import React, { useState, useEffect } from "react";
 
 //Functional Component
 const Home = (props) => {
+  const {images} = props
   return (
     <div>  
       <div className="home-page">
@@ -16,7 +17,7 @@ const Home = (props) => {
               <Sidebar appName={"Movie DB"} />
             </div>
             <div className="col-lg-9">
-              <Carousal />
+              <Carousal images={images}/>
               <div className="row">
                 <Movielist movies={props.movies} />
               </div>
@@ -31,7 +32,12 @@ const Home = (props) => {
 Home.getInitialProps = async () => {
   console.log("Initial props executed from Home page");
   const movies = await getMovies();
-  return { movies };
+  const images = movies.map(movie=>({
+     id: `imageId-${movie.id}`,
+     url: movie.cover,
+     name: movie.name
+  }));
+  return { movies, images };
 };
 
 //Class Component modified

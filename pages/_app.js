@@ -5,6 +5,13 @@ import Navbar from "../components/navBar";
 import Footer from "../components/footer";
 
 class MovieApp extends App {
+
+  static async getInitialProps(appContext){
+    console.log('Initial props from base app');
+    const appProps = await App.getInitialProps(appContext);
+    return {...appProps}
+  }
+
   render() {
     const { Component, pageProps } = this.props;
     return (

@@ -77,7 +77,7 @@ import React, {useState,useEffect} from "react";
 //   );
 // };
 
-//Class Component
+//Class Component modified
 class Home extends React.Component {
 
   constructor(props){

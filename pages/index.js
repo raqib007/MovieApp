@@ -7,6 +7,7 @@ import Footer from "../components/footer";
 import {getMovies} from "../action/index";
 import React, {useState,useEffect} from "react";
 
+//Functional Component
 // const Home = () => {
 //   const [movies,setMovies] = useState([]);
 //   const [count, setCount] = useState(0);
@@ -76,6 +77,7 @@ import React, {useState,useEffect} from "react";
 //   );
 // };
 
+//Class Component
 class Home extends React.Component {
 
   constructor(props){

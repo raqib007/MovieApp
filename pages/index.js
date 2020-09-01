@@ -1,25 +1,24 @@
-
 import Sidebar from "../components/sideBar";
 import Carousal from "../components/carousal";
 import Movielist from "../components/movieList";
-import { getMovies } from "../action/index";
+import { getMovies, getCategories } from "../action/index";
 import React, { useState, useEffect } from "react";
 
 //Functional Component
 const Home = (props) => {
-  const {images} = props
+  const { images, movies, categories } = props;
   return (
-    <div>  
+    <div>
       <div className="home-page">
         <div className="container">
           <div className="row">
             <div className="col-lg-3">
-              <Sidebar appName={"Movie DB"} />
+              <Sidebar appName={"Movie DB"} categories={categories} />
             </div>
             <div className="col-lg-9">
-              <Carousal images={images}/>
+              <Carousal images={images} />
               <div className="row">
-                <Movielist movies={props.movies} />
+                <Movielist movies={movies} />
               </div>
             </div>
           </div>
@@ -32,12 +31,13 @@ const Home = (props) => {
 Home.getInitialProps = async () => {
   console.log("Initial props executed from Home page");
   const movies = await getMovies();
-  const images = movies.map(movie=>({
-     id: `imageId-${movie.id}`,
-     url: movie.cover,
-     name: movie.name
+  const categories = await getCategories();
+  const images = movies.map((movie) => ({
+    id: `imageId-${movie.id}`,
+    url: movie.cover,
+    name: movie.name,
   }));
-  return { movies, images };
+  return { movies, images, categories };
 };
 
 //Class Component modified

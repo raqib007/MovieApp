@@ -79,3 +79,13 @@ export const getCategories = () =>{
     },50)
   })
 }
+
+export const createMovie = (movie) =>{
+  movie.id = Math.random().toString(36).substr(2,7);
+  return new Promise((resolve,reject)=>{
+    MOVIE_DATA.push(movie);
+    setTimeout(()=>{
+      resolve(MOVIE_DATA)
+    },50)
+  })
+}
